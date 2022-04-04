@@ -15,18 +15,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+//Inicializar conexion de socket
+require('./sockets/index').startConnection(io);
+
 //Controladores
 // app.use('ruta de controladores')
-
-//Whenever someone connects this gets executed
-io.on('connection', function(socket) {
-    console.log('A user connected');
- 
-    //Whenever someone disconnects this piece of code executed
-    socket.on('disconnect', function () {
-       console.log('A user disconnected');
-    });
- });
 
 const PORT = process.env.PORT || 3000
 

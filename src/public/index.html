@@ -8,7 +8,17 @@
 </head>
 <body>
     <h1>Proyecto sockets</h1>
+    <form action="">
+        <div class="container">
+            <label for="title">Título</label>
+            <input type="text" id="title" placeholder="Ingresa un titulo">
+            <label for="description">Descripcion</label>
+            <textarea name="description" id="description" cols="20" rows="10"></textarea>
+            <button type="submit">Guardar</button>
+        </div>
+        <div class="content"></div>
+    </form>
 </body>
 <script src = "/socket.io/socket.io.js"></script>
-<script src="./socket.js"></script>
+<script type="module" src="./socket.js"></script>
 </html>
