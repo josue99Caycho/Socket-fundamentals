@@ -29,7 +29,6 @@ io.on('connection', function(socket) {
  });
 
 const PORT = process.env.PORT || 3000
-console.log('PROCCESS', process.env.PORT)
 
 server.listen(PORT, function() {
     console.log('Escuchando en el puerto *:', PORT);
