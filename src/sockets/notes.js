@@ -1,4 +1,5 @@
 module.exports.listNotes = function (socket) {
+    //Listado hardcoded
         const data = [
             {
                 id: 1,
@@ -16,12 +17,23 @@ module.exports.listNotes = function (socket) {
                 description: 'Tercera nota registrada'
             }
         ]
+        //Emitir listados hardcoded
         socket.emit('client:notes_list', data)
 }
 
 module.exports.addNote = function (io, { list, value}) {
+    //Asignar ID a registro
     const id = list[list.length - 1].id + 1
     value.id = id
+    //Agregar elemento dentro de la lista
     list.push(value)
+    //Emitir lista
    io.emit('client:notes_list', list)
+}
+
+module.exports.listById = function(socket, { input, list = [] }){
+    //Filtrar nota por nombre o descripcion
+    const noteFiltered = list.filter( element => element.note.includes(input) || element.description.includes(input) )
+    //Emitir nota(s) filtrada(s)
+    socket.emit('client:notes_list', noteFiltered)
 }

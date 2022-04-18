@@ -7,3 +7,12 @@ export const  appendList  = (response = []) => {
     response.map(item => dataCardLi = dataCardLi + '<li>' + item.note + '</li>')
     return dataCardLi
 }
+
+/**
+ * 
+ * @param {document} document documento del DOM
+ * @param {Array} inputs inputs a limpiar
+ */
+export const cleanInputs = (document, inputs = []) => {
+    inputs.map( element => document.querySelector(element).value = '' )
+}

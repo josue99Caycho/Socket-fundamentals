@@ -1,40 +1,60 @@
 //Socket
 const socket = io()
 
-//importación de utilitario
-import { appendList } from './util.js'
+//Utilitario
+import { appendList, cleanInputs } from './util.js'
 
 /**
- * SOCKETS
+ ****SOCKETS****
  */
 
 //Listado de notas
 let data = []
+//Listado temporal
+let temp = []
 
 //Listado de notas
 socket.on('client:notes_list', response => {
     data = response
+    temp = response
     const li = appendList(response)
     const content = document.querySelector('.content')
     content.innerHTML = `<ul> ${li} </ul>`
 })
 
 /**
- * Manipulación de DOM
+ * *********FORMULARIO*********
  */
 
+//-------AGREGAR NOTA--------
 //Obtener datos de formulario cuando se ejecute el evento 'submit'
-document.addEventListener('submit', (e)=> {
+document.getElementById('form-action').addEventListener('submit', (e) => {
     e.preventDefault()
+    //Obtener datos del formulario
     const note = document.querySelector('#title').value
     const description = document.querySelector('#description').value
 
+    //Preparar datos obtenidos para enviarlos al backend
     const labels = {
-        list : data,
+        list: data,
         value: { note, description }
     }
+    //Emitir datos
     socket.emit('server:notes_add', labels)
+    //Resetear variable temporal
+    data = []
+    //Limpiar cajas de texto
+    cleanInputs(document,['#title','#description'])
 })
 
-
+//------BUSCAR NOTA (por título o descripcion)------
+document.getElementById('search-button').addEventListener('click', (e)=> {
+    e.preventDefault()
+    const inputSearch = document.querySelector('#search-item').value
+    const data = {
+        input: inputSearch,
+        list: temp
+    }
+    socket.emit('server:notes_filter', data)
+})
 

@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Proyecto sockets</h1>
-    <form action="">
+    <form action="" id="form-action">
         <div class="container">
             <label for="title">Título</label>
             <input type="text" id="title" placeholder="Ingresa un titulo">
@@ -18,7 +18,11 @@
             <textarea name="description" id="description" cols="20" rows="10"></textarea>
             <button type="submit">Guardar</button>
         </div>
-        <div class="content"></div>
     </form>
+    <div>
+        <input type="search" id="search-item" placeholder="Ingresa el Título o Descripción">Buscar</input>
+        <button id="search-button" type="submit">Buscar</button>
+    </div>
+    <div class="content"></div>
 </body>
 </html>

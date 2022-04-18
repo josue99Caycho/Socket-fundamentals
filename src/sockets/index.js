@@ -1,4 +1,4 @@
-const { listNotes, addNote } = require('./notes')
+const { listNotes, addNote, listById } = require('./notes')
 
 module.exports = {
     startConnection : async function (io){
@@ -10,6 +10,11 @@ module.exports = {
             //Evento para registrar notas
             socket.on('server:notes_add', (data) => {
                 addNote(io, data )
+            })
+
+            //Evento para buscar una nota
+            socket.on('server:notes_filter', (data) => {
+                listById(socket, data)
             })
          
             //Mostrar en consola usuarios desconectados
