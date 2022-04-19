@@ -1,11 +1,16 @@
 const { listNotes, addNote, listById } = require('./notes')
 
 module.exports = {
-    startConnection : async function (io){
+    startConnection : function (io){
         io.on('connection', function(socket) {
             
-            //Listado de notas
+            //Listado de notas de forma automatica
             listNotes(socket)
+
+            //Listar notas en respuesta a un evento
+            socket.on('server:notes_list', (data) => {
+                listNotes(socket, data)
+            })
 
             //Evento para registrar notas
             socket.on('server:notes_add', (data) => {

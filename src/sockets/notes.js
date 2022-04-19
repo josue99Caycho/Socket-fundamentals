@@ -1,6 +1,6 @@
-module.exports.listNotes = function (socket) {
+module.exports.listNotes = function (socket, data = []) {
     //Listado hardcoded
-        const data = [
+        const dataHardcode = [
             {
                 id: 1,
                 note: 'hola Mundo1',
@@ -17,6 +17,8 @@ module.exports.listNotes = function (socket) {
                 description: 'Tercera nota registrada'
             }
         ]
+        //Si el arreglo de datos está vacío tomar los datos hardcodeds
+        data = data.length > 0 ? data: dataHardcode
         //Emitir listados hardcoded
         socket.emit('client:notes_list', data)
 }

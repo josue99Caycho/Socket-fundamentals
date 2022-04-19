@@ -5,24 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <script src = "/socket.io/socket.io.js"></script>
     <script src="./main.js" type="module"></script>
 </head>
 <body>
-    <h1>Proyecto sockets</h1>
-    <form action="" id="form-action">
-        <div class="container">
-            <label for="title">Título</label>
-            <input type="text" id="title" placeholder="Ingresa un titulo">
-            <label for="description">Descripcion</label>
-            <textarea name="description" id="description" cols="20" rows="10"></textarea>
-            <button type="submit">Guardar</button>
-        </div>
-    </form>
-    <div>
-        <input type="search" id="search-item" placeholder="Ingresa el Título o Descripción">Buscar</input>
-        <button id="search-button" type="submit">Buscar</button>
+    <div class="title">
+        <h1>Proyecto sockets</h1>
     </div>
-    <div class="content"></div>
+   <div class="form">
+    <div class="container">
+    <form action="" id="form-action">
+        <label for="title">Título</label>
+        <input type="text" id="title" placeholder="Ingresa un titulo">
+        <label for="description">Descripcion</label>
+        <textarea name="description" id="description" cols="20" rows="10"></textarea>
+        <button type="submit">Guardar</button>
+    </form>
+    </div>
+    <div class="contenido">
+        <div class="search">
+            <input type="search" id="search-item" placeholder="Ingresa el Título o Descripción">Buscar</input>
+            <button id="search-button" type="submit">Buscar</button>
+            <button id="search-clean" type="submit">Limpiar</button>
+        </div>
+        <div class="content"></div>
+    </div>
+</div>
 </body>
 </html>

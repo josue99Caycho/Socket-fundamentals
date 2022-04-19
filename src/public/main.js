@@ -14,7 +14,7 @@ let data = []
 let temp = []
 
 //Listado de notas
-socket.on('client:notes_list', response => {
+socket.on('client:notes_list', (response = []) => {
     data = response
     temp = response
     const li = appendList(response)
@@ -51,10 +51,21 @@ document.getElementById('form-action').addEventListener('submit', (e) => {
 document.getElementById('search-button').addEventListener('click', (e)=> {
     e.preventDefault()
     const inputSearch = document.querySelector('#search-item').value
+
+    if(inputSearch.trim() === ''){
+       alert('Ingresa un titlo o descripcion para buscar')
+       return
+    }
     const data = {
         input: inputSearch,
         list: temp
     }
     socket.emit('server:notes_filter', data)
-})
+}, false)
+
+//-------LIMPIAR CAJA DE TEXTO Y LISTAR NOTAS--------
+document.getElementById('search-clean').addEventListener('click', (e) => {
+    e.preventDefault()
+    socket.emit('server:notes_list', temp)
+}, false)
 
